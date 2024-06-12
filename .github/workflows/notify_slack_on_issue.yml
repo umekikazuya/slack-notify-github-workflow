@@ -14,7 +14,7 @@ jobs:
         with:
           status: ${{ job.status }}
           notification_title: "{workflow} has {status_message}"
-          message_format: "{emoji} *{workflow}* {status_message} in <{repo_url}|{repo}>"
-          footer: "Linked Repo <{repo_url}|{repo}> | <{workflow_url}|View Workflow>"
+          message_format: "{emoji} *${{ github.event_name }}: ${{ github.event.issue.title }}* in <{repo_url}|{repo}>"
+          footer: "URL: <{repo_url}|{repo}> | <{workflow_url}>"
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
