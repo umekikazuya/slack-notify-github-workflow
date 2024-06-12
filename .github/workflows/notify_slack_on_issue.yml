@@ -8,8 +8,8 @@ jobs:
   notification:
     runs-on: ubuntu-latest
     steps:
-      - name: Notify Slack
-        uses: ravsamhq/notify-slack-action@v1.0.3
+      - name: Notify Slack Action
+        uses: ravsamhq/notify-slack-action@2.5.0
         with:
           status: ${{ github.event.action }}
           notification_title: "GitHub Issue Notification"
