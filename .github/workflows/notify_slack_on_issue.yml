@@ -8,6 +8,7 @@ jobs:
   notification:
     runs-on: ubuntu-latest
     steps:
+      - run: echo "${{ toJson(github) }}"
       - uses: ravsamhq/notify-slack-action@v2
         if: always()
         with:
