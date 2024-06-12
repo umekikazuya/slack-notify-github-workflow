@@ -8,14 +8,13 @@ jobs:
   notification:
     runs-on: ubuntu-latest
     steps:
-      - name: Notify Slack Action
-        uses: ravsamhq/notify-slack-action@2.5.0
+      - uses: ravsamhq/notify-slack-action@v2
+        if: always()
         with:
-          status: ${{ github.event.action }}
-          notification_title: "GitHub Issue Notification"
-          message_format: Issue #${{ github.event.issue.number }} ${{ github.event.action }} by ${{ github.identity }}
-          webhook-url: ${{ secrets.SLACK_WEBHOOK_URL }}
-          icon_success: ':heavy_check_mark:'
-          icon_failure: ':x:'
-          icon_cancelled: ':no_entry_sign:'
-          icon_warnings: ':warning:'
+          status: ${{ job.status }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          notification_title: "{workflow} has {status_message}"
+          message_format: "{emoji} *{workflow}* {status_message} in <{repo_url}|{repo}>"
+          footer: "Linked Repo <{repo_url}|{repo}> | <{workflow_url}|View Workflow>"
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
