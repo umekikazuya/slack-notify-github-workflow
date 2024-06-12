@@ -13,5 +13,9 @@ jobs:
         with:
           status: ${{ github.event.action }}
           notification_title: "GitHub Issue Notification"
-          message: Issue #${{ github.event.issue.number }} ${{ github.event.action }} by ${{ github.event.sender.login }}
-          webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
+          message_format: Issue #${{ github.event.issue.number }} ${{ github.event.action }} by ${{ github.identity }}
+          webhook-url: ${{ secrets.SLACK_WEBHOOK_URL }}
+          icon_success: ':heavy_check_mark:'
+          icon_failure: ':x:'
+          icon_cancelled: ':no_entry_sign:'
+          icon_warnings: ':warning:'
